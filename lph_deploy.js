@@ -26,7 +26,7 @@ app.get('/update/api', (req, res)=>{
         })        
     })
 
-    Promise.all(proms).then((results)=>{res.json(results)})
+    Promise.all(proms).then((results)=>{res.json(results)}).catch((e)=>{res.json({error: e})})
 })
 
 app.get('/', (req, res)=>{
