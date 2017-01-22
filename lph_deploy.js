@@ -6,9 +6,15 @@ var request = require("request");
 
 
 app.get('/deploy', (req, res)=>{
-    var res = cp.execSync("cd ");
+    var res = cp.execSync("cd /home/ubuntu/lhp_twins_api && git pull && npm install && pm2 restart API_0");
     res.json(res)
 })
+
+app.get('/update', (req, res)=>{
+    var res = cp.execSync("cd /home/ubuntu/lph_deploy && git pull && npm install && pm2 restart lph_deploy");
+    res.json(res)
+})
+
 
 app.get('/', (req, res)=>{
     res.json({data: "deploy system not working"})
