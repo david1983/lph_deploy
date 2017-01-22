@@ -15,6 +15,19 @@ app.get('/update', (req, res)=>{
     res.json(r)
 })
 
+app.get('/update/api', (req, res)=>{
+    var ec2_instances = ["35.163.146.211", "35.163.146.211"];
+    var proms = ec2_instances.map((i)=>{
+        return Promise((resolve, reject)=>{
+            request.get("http://" + i + ":3333/deploy", (e,s,b)=>{
+                if(e) reject(e)
+                resolve(b)
+            })
+        })        
+    })
+
+    Promise.all(proms).then((results)=>{res.json(results)})
+})
 
 app.get('/', (req, res)=>{
     res.json({data: "deploy system not working"})
