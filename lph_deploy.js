@@ -18,17 +18,11 @@ app.all('/update', (req, res)=>{
 
 app.all('/update/api', (req, res)=>{
     var ec2_instances = ["35.163.146.211", "35.163.146.211"];
-    var proms = ec2_instances.map((i)=>{
-        return new Promise((resolve, reject)=>{
-            request.get("http://" + i + ":3000/update", (e,s,b)=>{
-                console.log(e,b)
-                if(e) reject(e)
-                resolve(b)
-            })
-        })        
+    ec2_instances.forEach((i)=>{
+      request.get("http://" + i + ":3000/update")      
     })
 
-    Promise.all(proms).then((results)=>{res.json(results)}).catch((e)=>{res.json({error: e})})
+    res.json("done")
 })
 
 app.get('/', (req, res)=>{
