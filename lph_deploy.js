@@ -21,6 +21,7 @@ app.all('/update/api', (req, res)=>{
     var proms = ec2_instances.map((i)=>{
         return new Promise((resolve, reject)=>{
             request.get("http://" + i + ":3000/update", (e,s,b)=>{
+                console.log(e,s,b)
                 if(e) reject(e)
                 resolve(b)
             })
