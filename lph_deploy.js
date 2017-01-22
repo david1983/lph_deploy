@@ -5,17 +5,17 @@ var request = require("request");
 
 
 
-app.get('/deploy', (req, res)=>{
+app.all('/deploy', (req, res)=>{
     var r = cp.execSync("cd /home/ubuntu/lhp_twins_api && git pull && npm install && pm2 restart API_0");
     res.json(r)
 })
 
-app.get('/update', (req, res)=>{
+app.all('/update', (req, res)=>{
     var r = cp.execSync("cd /home/ubuntu/lph_deploy && git pull && npm install && pm2 restart lph_deploy");
     res.json(r)
 })
 
-app.get('/update/api', (req, res)=>{
+app.all('/update/api', (req, res)=>{
     var ec2_instances = ["35.163.146.211", "35.163.146.211"];
     var proms = ec2_instances.map((i)=>{
         return new Promise((resolve, reject)=>{
