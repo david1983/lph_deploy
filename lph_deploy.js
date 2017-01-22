@@ -15,6 +15,7 @@ app.all('/update', (req, res)=>{
     res.json(r)
 })
 
+
 app.all('/update/api', (req, res)=>{
     var ec2_instances = ["35.163.146.211", "35.163.146.211"];
     var proms = ec2_instances.map((i)=>{
