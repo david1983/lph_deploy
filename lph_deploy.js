@@ -17,7 +17,7 @@ app.all('/update', (req, res)=>{
 
 
 app.all('/update/api', (req, res)=>{
-    var ec2_instances = ["35.163.146.211", "35.163.146.211"];
+    var ec2_instances = ["35.163.146.211", "35.167.104.131"];
     ec2_instances.forEach((i)=>{
       request.get("http://" + i + ":3000/update")      
     })
